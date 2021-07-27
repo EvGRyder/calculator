@@ -90,14 +90,14 @@ clear.addEventListener('click', () => {
     stringSoFar = ""
 })
 
-back.addEventListener('click', () => {
+back.addEventListener('click', backspace)
+function backspace() {
     if(stringSoFar.charAt(stringSoFar.length - 1) === " ") {
         stringSoFar = stringSoFar.slice(0, -3)
     } else stringSoFar = stringSoFar.slice(0, -1)
 
     result.textContent = stringSoFar
-})
-
+}
 //  NUMBAS //
 
 
@@ -120,6 +120,7 @@ window.addEventListener('keydown', e => {
     if (e.key == "-") addSub()
     if (e.key == "/") addDiv()
     if (e.key == "Enter") enterButton()
+    if (e.key == "Backspace") backspace()
 })
 
 /////
