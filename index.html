@@ -13,6 +13,7 @@
         <div id="panel">
             <div id="result"></div>
             <button id="clear">Clear</button>
+            <button id="back">Back</button>
         </div>
         <div id="buttons">
             <div class="row">
@@ -35,6 +36,7 @@
             </div>
             <div class="row last-row">
                 <button id="zero">0</button>
+                <button id="point">.</button>
                 <button id="equal">=</button>
                 <button id="plus">+</button>
             </div>
@@ -44,6 +46,11 @@
 
 
     <script src="script.js"></script>
+    <script>
+        window.addEventListener('keydown', function (e) {
+            console.log(e);
+        })
+    </script>
 </body>
 
 

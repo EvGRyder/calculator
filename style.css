@@ -16,12 +16,18 @@
 
 #panel > button {
     height: 55%;
+    margin-right: 10px;
 }
 
 #result {
+    flex-grow: 1;
+    text-align: right;
+    font-size: 2.5em;
     background-color: white;
     border: solid 5px;
     height: 50%;
+    padding: 1px;
+    padding-right: 13px;
     margin: 15px;
     width: 33%;
 }
@@ -49,7 +55,6 @@
 }
 
 #equal {
-    min-width: 190px;
     background-color: pink;
 }
 

@@ -10,7 +10,9 @@ const six = document.querySelector('#six')
 const seven = document.querySelector('#seven')
 const eight = document.querySelector('#eight')
 const nine = document.querySelector('#nine')
+const point = document.querySelector('#point')
 
+const back = document.querySelector('#back')
 const clear = document.querySelector('#clear')
 const plus = document.querySelector('#plus')
 const multiply = document.querySelector('#multiply')
@@ -19,25 +21,27 @@ const divide = document.querySelector('#divide')
 
 currentEntry = ""
 let stringResult = []
+let stringSoFar = ""
 
-equal.addEventListener('click', () => {
-    stringResult.push(currentEntry)
+equal.addEventListener('click', enterButton)
 
+function enterButton() {
+    let arrSoFar = stringSoFar.split(" ")
+    
 
-    while(stringResult.length > 2) {
+    while(arrSoFar.length > 2) {
         let [num1, operator, num2] = [
-            parseInt(stringResult[0]), 
-            stringResult[1], 
-            parseInt(stringResult[2])
+            parseFloat(arrSoFar[0]), 
+            arrSoFar[1], 
+            parseFloat(arrSoFar[2])
         ]
         curr = operate(num1, num2, operator)
-        stringResult = stringResult.splice(2)
-        stringResult[0] = curr
+        arrSoFar = arrSoFar.splice(2)
+        arrSoFar[0] = curr
     }
-    result.textContent = stringResult[0]
+    result.textContent = arrSoFar[0]
     currentEntry = ""
-    }
-)
+}
 
 function operate(num1, num2, operator) {
     if (operator == "+") return num1 + num2
@@ -49,92 +53,157 @@ function operate(num1, num2, operator) {
     }
 }
 
-plus.addEventListener('click', () => {
+///
+plus.addEventListener('click', addPlus)
+function addPlus() {
     stringResult.push(currentEntry)
-    currentEntry = ""
+    stringSoFar += ' + '
+    result.textContent = stringSoFar
+}
 
-    result.textContent = result.textContent + ' + '
-    stringResult.push('+')
-})
-
-multiply.addEventListener('click', () => {
+///
+multiply.addEventListener('click', addTimes)
+function addTimes() {
     stringResult.push(currentEntry)
-    currentEntry = ""
+    stringSoFar += ' * '
+    result.textContent = stringSoFar
+}
 
-    result.textContent = result.textContent + ' * '
-    stringResult.push('*')
-})
-
-subtract.addEventListener('click', () => {
+///
+subtract.addEventListener('click', addSub)
+function addSub() {
     stringResult.push(currentEntry)
-    currentEntry = ""
+    stringSoFar += ' - '
+    result.textContent = stringSoFar
+}
 
-    result.textContent = result.textContent + ' - '
-    stringResult.push('-')
-})
-
-divide.addEventListener('click', () => {
+///
+divide.addEventListener('click', addDiv)
+function addDiv() {
     stringResult.push(currentEntry)
-    currentEntry = ""
-
-    result.textContent = result.textContent + ' / '
-    stringResult.push('/')
-})
+    stringSoFar += ' / '
+    result.textContent = stringSoFar
+}
 
 clear.addEventListener('click', () => {
     result.textContent = ""
-    currentEntry = ""
-    stringResult = []
+    stringSoFar = ""
+})
+
+back.addEventListener('click', () => {
+    if(stringSoFar.charAt(stringSoFar.length - 1) === " ") {
+        stringSoFar = stringSoFar.slice(0, -3)
+    } else stringSoFar = stringSoFar.slice(0, -1)
+
+    result.textContent = stringSoFar
 })
 
 //  NUMBAS //
 
-zero.addEventListener('click', () => {
+
+// keyCode listener
+window.addEventListener('keydown', e => {
+    console.log(e.key);
+    if (e.key == 0) addZero()
+    if (e.key == 1) addOne()
+    if (e.key == 2) addTwo()
+    if (e.key == 3) addThree()
+    if (e.key == 4) addFour()
+    if (e.key == 5) addFive()
+    if (e.key == 6) addSix()
+    if (e.key == 7) addSeven()
+    if (e.key == 8) addEight()
+    if (e.key == 9) addNine()
+    if (e.key == ".") addPoint()
+    if (e.key == "+") addPlus()
+    if (e.key == "*") addTimes()
+    if (e.key == "-") addSub()
+    if (e.key == "/") addDiv()
+    if (e.key == "Enter") enterButton()
+})
+
+/////
+zero.addEventListener('click', addZero)
+function addZero() {
     result.textContent = result.textContent + '0'
-    currentEntry += 0
-})
+    stringSoFar += 0
+}
+/////
+one.addEventListener('click', addOne)
 
-one.addEventListener('click', () => {
+function addOne() {
     result.textContent = result.textContent + '1'
-    currentEntry += 1
-})
+    stringSoFar += 1
+}
 
-two.addEventListener('click', () => {
+/////
+two.addEventListener('click', addTwo)
+
+function addTwo() {
     result.textContent = result.textContent + '2'
-    currentEntry += 2
-})
+    stringSoFar += 2
+}
 
-three.addEventListener('click', () => {
+/////
+three.addEventListener('click', addThree)
+
+function addThree() {
     result.textContent = result.textContent + '3'
-    currentEntry += 3
-})
+    stringSoFar += 3
+}
 
-four.addEventListener('click', () => {
+/////
+four.addEventListener('click', addFour)
+
+function addFour() {
     result.textContent = result.textContent + '4'
-    currentEntry += 4
-})
+    stringSoFar += 4
+}
 
-five.addEventListener('click', () => {
+/////
+five.addEventListener('click', addFive)
+
+function addFive() {
     result.textContent = result.textContent + '5'
-    currentEntry += 5
-})
+    stringSoFar += 5
+}
 
-six.addEventListener('click', () => {
+/////
+six.addEventListener('click', addSix)
+
+function addSix() {
     result.textContent = result.textContent + '6'
-    currentEntry += 6
-})
+    stringSoFar += 6
+}
 
-seven.addEventListener('click', () => {
+/////
+seven.addEventListener('click', addSeven)
+
+function addSeven() {
     result.textContent = result.textContent + '7'
-    currentEntry += 7
-})
+    stringSoFar += 7
+}
 
-eight.addEventListener('click', () => {
+/////
+eight.addEventListener('click', addEight)
+
+function addEight() {
     result.textContent = result.textContent + '8'
-    currentEntry += 8
-})
+    stringSoFar += 8
+}
 
-nine.addEventListener('click', () => {
+/////
+nine.addEventListener('click', addNine)
+
+function addNine() {
     result.textContent = result.textContent + '9'
-    currentEntry += 9
-})
+    stringSoFar += 9
+}
+
+/////
+point.addEventListener('click', addPoint)
+
+function addPoint() {
+    result.textContent = result.textContent + '.'
+    stringSoFar += "."
+}
