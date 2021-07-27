@@ -23,6 +23,7 @@ let stringResult = []
 equal.addEventListener('click', () => {
     stringResult.push(currentEntry)
 
+
     while(stringResult.length > 2) {
         let [num1, operator, num2] = [
             parseInt(stringResult[0]), 
@@ -44,7 +45,7 @@ function operate(num1, num2, operator) {
     if (operator == "*") return num1 * num2
     if (operator == "/") {
         if (num2 == 0) return "CANNOT DIVIDE BY ZERO"
-        else return num1 / num2
+        else return (num1 / num2).toFixed(2)
     }
 }
 
