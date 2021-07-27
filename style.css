@@ -1,0 +1,37 @@
+#calculator {
+    width: 600px;
+    height: 700px;
+    background-color: aqua;
+}
+
+#panel {
+    background-color: red;
+    height: 15%;
+}
+
+#result {
+    background-color: grey;
+    height: 33%;
+    margin: 15px;
+    width: 33%;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 600px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.row > button {
+    width: 95px;
+    height: 95px;
+}
